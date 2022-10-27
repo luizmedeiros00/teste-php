@@ -1,0 +1,32 @@
+version: "3"
+
+networks:
+  teste-network:
+    driver: bridge
+
+services:
+  apache:
+    image: 'php:8.1-apache'
+    container_name: php-teste
+    restart: always
+    ports:
+      - '81:80'
+    volumes:
+      - ./html:/var/www/html
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
+
+  mysqldb:
+    container_name: mysql-teste
+    image: mysql:5.7
+    restart: always
+    networks:
+      - teste-network
+    ports:
+      - '3307:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=teste
+
