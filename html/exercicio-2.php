@@ -49,6 +49,3 @@ function arrayOfNumbers($length, $minNumber = 1, $maxNumber = 100)
 
     return $array;
 }
-
-
-

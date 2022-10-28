@@ -5,9 +5,9 @@ use App\Infra\Database\MysqlConnection;
 use App\Infra\Repository\UserRepository;
 
 $params = [
-    'name' => $_POST['name'],
-    'userName' => $_POST['userName'],
-    'zipCode'  => $_POST['zipCode'],
+    'name'      => $_POST['name'],
+    'userName'  => $_POST['userName'],
+    'zipCode'   => $_POST['zipCode'],
     'email'     => $_POST['email'],
     'password'  => $_POST['password']
 ];
