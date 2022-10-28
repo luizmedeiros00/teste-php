@@ -1,0 +1,17 @@
+{
+  "name": "luizlima/html",
+  "authors": [
+    {
+      "name": "Luiz Medeiros",
+      "email": "luizmedeiros00@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "App\\": "app"
+      
+    }
+  }
+}
