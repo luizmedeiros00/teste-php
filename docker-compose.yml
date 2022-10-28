@@ -6,17 +6,19 @@ networks:
 
 services:
   apache:
-    image: 'php:8.1-apache'
+    build: './'
     container_name: php-teste
     restart: always
     ports:
       - '81:80'
     volumes:
-      - ./html:/var/www/html
+      - ./html:/var/www/html/public
     depends_on:
       - mysqldb
     links:
       - mysqldb
+    networks:
+      - teste-network
 
   mysqldb:
     container_name: mysql-teste
