@@ -12,7 +12,7 @@ services:
     ports:
       - '81:80'
     volumes:
-      - ./html:/var/www/html/public
+      - ./:/var/www/html
     depends_on:
       - mysqldb
     links:
