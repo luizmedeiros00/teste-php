@@ -2,11 +2,10 @@
 
 namespace App\Infra\Database;
 
-use App\Infra\Database\IConnection;
-
-class MysqlConnection implements IConnection
+use App\Infra\Database\ConnectionInterface;
+class MysqlConnection implements ConnectionInterface
 {
-    public $connection;
+    private $connection;
 
     public function __construct()
     {
@@ -17,14 +16,31 @@ class MysqlConnection implements IConnection
 
     }
 
-    public function query(string $statement, $params)
+    public function insert(string $statement, $params)
     {
         return $this->connection->prepare($statement)->execute($params);
+    }
+
+    public function select(string $statement): array
+    {
+        return $this->connection->query($statement)->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function where(string $statement, $params): array
+    {
+        $stmt = $this->connection->prepare($statement);
+        $stmt->execute($params);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getLastInsertId(): int
     {
         return $this->connection->lastInsertId();
+    }
+
+    public function createTable(string $statement)
+    {
+        $this->connection->exec($statement);
     }
 }
 

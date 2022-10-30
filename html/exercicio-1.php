@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 
 <head>
@@ -5,7 +8,18 @@
 </head>
 
 <body>
-    <form method="post" action="app/Infra/Http/PostUser.php">
+    <?php
+
+    if (isset($_SESSION['errors_message'])) {
+        $messages = $_SESSION['errors_message'];
+        unset($_SESSION['errors_message']);
+        foreach($messages as $message){
+            echo "<span style='color:red'>$message<br /></span>";
+        }
+        echo "<br /><br />";
+    }
+    ?>
+    <form method="post" action="/user-cadastrar">
         <div>
             <label for="name">Nome completo:</label>
             <input type="text" id="name" name="name">

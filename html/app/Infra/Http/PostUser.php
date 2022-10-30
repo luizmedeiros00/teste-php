@@ -1,6 +1,6 @@
 <?php
-require '../../../vendor/autoload.php';
 
+use App\Application\Validation\Validator;
 use App\Infra\Database\MysqlConnection;
 use App\Infra\Repository\UserRepository;
 
@@ -12,21 +12,22 @@ $params = [
     'password'  => $_POST['password']
 ];
 
+$validatorErrors = Validator::make($params, [
+    'name'      => 'required',
+    'userName'  => 'required',
+    'zipCode'   => 'required|cep',
+    'email'     => 'required|email',
+    'password'  => 'required|password'
+]);
+
+if (count($validatorErrors) > 0) {
+    session_start();
+    $_SESSION['errors_message'] = $validatorErrors;
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit;
+}
+
 $respository = new UserRepository(new MysqlConnection());
-$id = $respository->insert($params); 
+$id = $respository->create($params);
 
 echo $id;
-
-
-// CREATE TABLE teste.`user` (
-// 	id INT NOT NULL AUTO_INCREMENT,
-// 	name VARCHAR(250) NOT NULL,
-// 	userName VARCHAR(250) NOT NULL,
-// 	email VARCHAR(250) NOT NULL,
-// 	zipCode VARCHAR(250) NOT NULL,
-// 	password VARCHAR(250) NOT NULL,
-// 	PRIMARY KEY (id)
-// )
-// ENGINE=InnoDB
-// DEFAULT CHARSET=latin1
-// COLLATE=latin1_swedish_ci;
