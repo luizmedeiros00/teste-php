@@ -38,7 +38,7 @@ class MysqlConnection implements ConnectionInterface
         return $this->connection->lastInsertId();
     }
 
-    public function createTable(string $statement)
+    public function query(string $statement)
     {
         $this->connection->exec($statement);
     }

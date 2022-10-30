@@ -4,6 +4,10 @@ use App\Infra\Database\MysqlConnection;
 
 $connection = new MysqlConnection();
 
+$connection->query('DROP TABLE users');
+$connection->query('DROP TABLE usuario');
+$connection->query('DROP TABLE info');
+
 $usersTable = "CREATE TABLE IF NOT EXISTS `users` (
 	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(250) NOT NULL,
@@ -17,7 +21,7 @@ ENGINE=InnoDB
 DEFAULT CHARSET=latin1
 COLLATE=latin1_swedish_ci;";
 
-$connection->createTable($usersTable);
+$connection->query($usersTable);
 
 $usuariosTable = "CREATE TABLE IF NOT EXISTS `usuario` (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -29,7 +33,7 @@ ENGINE=InnoDB
 DEFAULT CHARSET=latin1
 COLLATE=latin1_swedish_ci;";
 
-$connection->createTable($usuariosTable);
+$connection->query($usuariosTable);
 
 $infoTable = "CREATE TABLE IF NOT EXISTS `info` (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -42,7 +46,7 @@ ENGINE=InnoDB
 DEFAULT CHARSET=latin1
 COLLATE=latin1_swedish_ci;";
 
-$connection->createTable($infoTable);
+$connection->query($infoTable);
 // -------- usuarios ---------- //
 $connection->insert(
 	"insert into usuario (cpf, nome) values (:cpf,:nome)",

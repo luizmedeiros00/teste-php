@@ -12,5 +12,5 @@ interface ConnectionInterface
 
     public function getLastInsertId(): int;
 
-    public function createTable(string $statemen);
+    public function query(string $statemen);
 }
