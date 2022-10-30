@@ -31,8 +31,8 @@ Crie as tabelas do banco de dados, acesse:
     
     Exercício 2
     http://localhost:81/exercicio-2 
-    (O arquivo é o exercício 2 na raiz no projeto)
+    (O arquivo é o exercicio-2.php na raiz no projeto)
     
-    Exercício 2
+    Exercício 3
     http://localhost:81/exercicio-3
-    (O arquivo é o exercício 3 na raiz no projeto)
+    (O arquivo é o exercicio-3.php na raiz no projeto)
